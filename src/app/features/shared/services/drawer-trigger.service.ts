@@ -16,13 +16,9 @@ export class DrawerTriggerService {
   _menuHandler = false
   
 
+  // data1 = new BehaviorSubject({action:this.menuHandler})
   data1 = new Subject()
   getData1$ = this.data1.asObservable();
-  
-
-  // constructor(){
-  //   this.data1.next(this.menuHandler)
-  // }
 
   switchDrawer(bool :boolean) {
     this.menuHandler = bool
