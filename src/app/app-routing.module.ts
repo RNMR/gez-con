@@ -4,18 +4,23 @@ import { SharedModule } from './features/shared/shared.module';
 
 const routes :Routes = [
   {
-    path: '',
-    loadChildren: () => import('./features/layout/layout.module')
+    path:'login',
+    loadChildren: () => import('./features/login/login.module').then(m=>m.LoginModule)
   },
   {
     path: '',
-    redirectTo: '/home',
+    loadChildren: () => import('./features/layout/layout.module').then(m=>m.LayoutModule)
+  },
+  {
+    path: '',
+    redirectTo: 'main/home',
     pathMatch: 'full'
   },
-  {
-    path: 'home',
-    loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule)
-  },
+  // {
+  //   path: '',
+  //   redirectTo: '/home',
+  //   pathMatch: 'full'
+  // },
 ]
 
 @NgModule({

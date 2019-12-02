@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
 
   vavrvar
 
-  @ViewChild(IgxNavigationDrawerComponent, {static:true}) navigation : IgxNavigationDrawerComponent
+  // @ViewChild(IgxNavigationDrawerComponent, {static:true}) navigation : IgxNavigationDrawerComponent
   constructor(
     private DTService : DrawerTriggerService,
   ){
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   }
 
   swapMenu(bool){
-    this.navigation.toggle()
+    // this.navigation.toggle()
   }
 
 }

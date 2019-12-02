@@ -10,6 +10,10 @@ html, body{
   height: 100%;
 }
 
+html{ // sera?
+  width: 100vh;
+}
+
 p{
   margin: 0;
 }
@@ -37,3 +41,10 @@ a, a:visited {
 
 @include igx-core();
 @include igx-theme($default-palette);
+
+
+/* Important secures */
+p{
+  margin-bottom: 10px;
+  margin-top: 0;
+}
