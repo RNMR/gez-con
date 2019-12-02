@@ -5,6 +5,10 @@ import { SharedModule } from './features/shared/shared.module';
 const routes :Routes = [
   {
     path: '',
+    loadChildren: () => import('./features/layout/layout.module')
+  },
+  {
+    path: '',
     redirectTo: '/home',
     pathMatch: 'full'
   },
