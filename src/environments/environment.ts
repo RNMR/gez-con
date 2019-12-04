@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  url_basic: 'http://elb-gez-1992010715.us-east-1.elb.amazonaws.com/',
+
+  _user: {
+    auth: 'authenticate'
+  }
 };
 
 /*
