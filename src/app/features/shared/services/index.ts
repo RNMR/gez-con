@@ -1,5 +1,7 @@
-import { DrawerTriggerService } from './drawer-trigger.service';
+import { AuthenticationService } from './authentication.service';
 
 export const SHARED_SERVICES = [
-  // DrawerTriggerService,
+  AuthenticationService
 ]
+
+// export * from './authentication.service';

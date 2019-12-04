@@ -1,1 +1,23 @@
-<p>form-login is here</p>
+
+<div id="particles-js" style="position: absolute; height: 100%; width: 100%; background-color: #333;"></div>
+<div class="d-flex w-100 justify-content-center h-100">
+  <div class="w-50 m-auto p-4 card">
+    <div class="">
+      <h4 class="text-center"> GEZ-CON </h4>
+      <div class="py-2"> </div>
+      <form [formGroup]="loginForm" class="d-flex flex-column w-100">
+        <igx-input-group>
+          <input igxInput name="fullName" type="email" email="true" formControlName="email" required="required" />
+          <label igxLabel for="fullName">Email</label>
+        </igx-input-group>
+        <hr>
+        <igx-input-group>
+          <input igxInput name="fullName" type="password" formControlName="pass" required="required" />
+          <label igxLabel for="fullName">Password</label>
+        </igx-input-group>
+        <button class="my-3" igxButton="flat" igxRipple="black">Flat</button>
+        <button class="my-3" igxButton="raised" igxRipple>Raised</button>
+      </form>
+    </div>
+  </div>
+</div>
