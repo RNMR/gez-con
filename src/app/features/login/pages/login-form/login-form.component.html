@@ -1,22 +1,24 @@
 
-<div id="particles-js" style="position: absolute; height: 100%; width: 100%; background-color: #333;"></div>
+<div id="particles-js"></div>
+<div class="Login-form--layout"></div>
 <div class="d-flex w-100 justify-content-center h-100">
-  <div class="w-50 m-auto p-4 card">
-    <div class="">
+  <div class="col-md-6 Login-form--separator"></div>
+  <div class="col-md-6 d-flex Login-form--container">
+    <div class="m-auto p-4 card d-flex justify-content-center Login-form--card">
       <h4 class="text-center"> GEZ-CON </h4>
       <div class="py-2"> </div>
       <form [formGroup]="loginForm" class="d-flex flex-column w-100">
-        <igx-input-group>
+        <igx-input-group class="py-2">
           <input igxInput name="fullName" type="email" email="true" formControlName="email" required="required" />
           <label igxLabel for="fullName">Email</label>
         </igx-input-group>
-        <hr>
-        <igx-input-group>
+  
+        <igx-input-group class="py-2">
           <input igxInput name="fullName" type="password" formControlName="pass" required="required" />
           <label igxLabel for="fullName">Password</label>
         </igx-input-group>
-        <button class="my-3" igxButton="flat" igxRipple="black">Flat</button>
-        <button class="my-3" igxButton="raised" igxRipple>Raised</button>
+        <!-- <button class="my-3" igxButton="flat" igxRipple="yellow">Flat</button> -->
+        <button class="my-3 mt-4" igxButton="raised" igxRipple="white">Raised</button>
       </form>
     </div>
   </div>

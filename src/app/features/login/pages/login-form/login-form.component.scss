@@ -1,3 +1,41 @@
 :host{
   width: 100%;
 }
+
+#particles-js{
+  position: absolute;
+  background: linear-gradient(0deg, #0a0a0a 1%, #555555 100%);
+  height: 100%;
+  width: 100%;
+}
+
+.Login-form{
+  &--layout{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(125deg, transparent 30%, #000 55%);
+  }
+  &--container{
+    @media(max-width: 766px){
+      padding: 0;
+    }
+  }
+  &--card{
+    border: 2px double #c4c4c4;
+    min-width: 310px;
+    min-height: 400px;
+  }
+
+  &--separator{
+    @media(max-width:766px){
+      display: none;
+    }
+  }
+}
+
+@media(max-width:766px){
+  .mobile--0margin{
+    margin: 0;
+  }
+}
