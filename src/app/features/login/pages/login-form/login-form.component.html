@@ -9,16 +9,22 @@
       <div class="py-2"> </div>
       <form [formGroup]="loginForm" class="d-flex flex-column w-100">
         <igx-input-group class="py-2">
-          <input igxInput name="fullName" type="email" email="true" formControlName="email" required="required" />
-          <label igxLabel for="fullName">Email</label>
+          <!-- <input igxInput name="fullName" type="email" email="true" formControlName="email" required="required" /> -->
+          <input igxInput name="username" formControlName="user" required="required" />
+          <label igxLabel for="username">Usuario</label>
         </igx-input-group>
   
         <igx-input-group class="py-2">
-          <input igxInput name="fullName" type="password" formControlName="pass" required="required" />
-          <label igxLabel for="fullName">Password</label>
+          <input igxInput name="pass" type="password" formControlName="pass" required="required" />
+          <label igxLabel for="pass">Password</label>
         </igx-input-group>
         <!-- <button class="my-3" igxButton="flat" igxRipple="yellow">Flat</button> -->
-        <button class="my-3 mt-4" igxButton="raised" igxRipple="white">Raised</button>
+        <button
+          class="my-3 mt-4"
+          igxButton="raised"
+          igxRipple="white"
+          (click)="logUser()"
+        >Raised</button>
       </form>
     </div>
   </div>

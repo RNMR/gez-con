@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthenticationService } from 'src/app/features/shared/services/authentication.service';
 
 declare var particlesJS: any;
 
@@ -10,11 +11,11 @@ declare var particlesJS: any;
 })
 export class LoginFormComponent implements OnInit {
 
-
   loginForm :FormGroup;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authSrv: AuthenticationService,
   ) { }
 
   ngOnInit(): void {
@@ -23,8 +24,18 @@ export class LoginFormComponent implements OnInit {
       console.log('callback - particles.js config loaded');
     });
     this.loginForm = this.fb.group({
-      email: [null, Validators.required],
+      user: [null, Validators.required],
       pass:  [null, Validators.required],
+    })
+  }
+
+  logUser(){
+    const user = this.loginForm.get('user').value;
+    const pass = this.loginForm.get('pass').value;
+    this.authSrv.login(user, pass).subscribe((data)=>{
+      console.log(data)
+    }, (err)=>{
+      console.log(err)
     })
   }
 }

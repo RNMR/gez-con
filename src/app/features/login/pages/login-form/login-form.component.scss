@@ -23,6 +23,8 @@
   }
   &--card{
     border: 2px double #c4c4c4;
+    border-radius: 10px;
+    width: 60%;
     min-width: 310px;
     min-height: 400px;
   }
@@ -37,5 +39,8 @@
 @media(max-width:766px){
   .mobile--0margin{
     margin: 0;
+  }
+  .Login-form--layout{
+    display: none;
   }
 }
