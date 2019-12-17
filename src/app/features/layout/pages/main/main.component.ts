@@ -23,6 +23,8 @@ export class MainComponent implements OnInit {
     private crypt: EncryptDecryptService,
   ) { }
 
+  menuItems = [];
+
   ngOnInit(): void {
     this.vavrvar = this.DTService.menuHandler
     this.swapMenu(this.vavrvar)
@@ -42,14 +44,25 @@ export class MainComponent implements OnInit {
   geetMenuByUser(){
     let username = localStorage.getItem('userName')
     const user = this.crypt.decrypt( username )
-    console.log(user, username)
     this.menuServ.getMenus(user).subscribe((res: any[])=>{
-      console.log(res)
+      this.menuItems = res;
+      console.log(res);
       if( res.length > 0 ) {
         const empresa = this.crypt.encrypt(res[0].empresa)
-        console.log("ehhh", empresa)
         localStorage.setItem('empresa', empresa)
+        this.getUserProfiles(res[0].empresa);
       }
     })
+  }
+
+  getUserProfiles(empresa){
+    this.menuServ.getProfiles(empresa).subscribe(( profData )=>{
+      console.log("aca los perfiles..." , profData)
+    })
+  }
+
+  getToRoute(item){
+    if(item.nivel !== 1)
+      this.router.navigate(['/' + item.opcion])
   }
 }

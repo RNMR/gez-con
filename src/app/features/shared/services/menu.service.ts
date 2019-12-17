@@ -12,4 +12,8 @@ export class MenuService {
   getMenus(user: string){
     return this.http.get(`${environment.url_basic}api/menuusuario/${user}`)
   }
+  
+  getProfiles(empresa){
+    return this.http.get(`${environment.url_basic}api/perfilempresa/${empresa}`)
+  }
 }

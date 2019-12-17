@@ -2,21 +2,38 @@
     <igx-nav-drawer id="navigation" #drawer [isOpen]="true">
       <ng-template igxDrawer>
         <nav>
-          <span igxDrawerItem [isHeader]="true"> Email Account </span>
-          <span igxDrawerItem igxRipple> Inbox </span>
-          <span igxDrawerItem igxRipple [active]="true"> Drafts </span>
-          <span igxDrawerItem igxRipple> Sent </span>
-          <span igxDrawerItem [isHeader]="true"> Folders </span>
-          <span igxDrawerItem igxRipple> Deleted </span>
-          <span igxDrawerItem igxRipple> Archive </span>
+          <span igxButton="icon" igxToggleAction="navigation" style="float:right; margin: 6px 6px 0 0;">
+            <igx-icon fontSet="material">menu</igx-icon>
+          </span>
+          <span igxDrawerItem [isHeader]="true" class="font-weight-bold"> Bienvenido </span>
+
+          <hr>
+          <span igxDrawerItem igxRipple [active]="true"> Home </span>
+
+          <ng-container *ngFor="let it of menuItems">
+            <hr [hidden]="it.nivel!==1">
+            <span 
+              igxDrawerItem 
+              [attr.igxRipple]="it.nivel !== 1"
+              [isHeader]="it.nivel === 1"
+              (click)="getToRoute(it)"
+              [ngStyle]="{'margin-left.px': (it.nivel-1)*15 }"
+            >
+              {{ it.descripcion }}
+            </span>
+          </ng-container>
+          
+          <!-- <span igxDrawerItem igxRipple [active]="true"> Drafts </span> -->
         </nav>
       </ng-template>
     </igx-nav-drawer>
-    <main class="main-container">
-      <!-- <span igxButton="icon" igxToggleAction="navigation">
-        <igx-icon fontSet="material">menu</igx-icon>
-      </span> -->
-      <router-outlet></router-outlet>
+    <main class="w-100 h-100">
+
+      <app-header></app-header>
+
+      <div class="main-container">
+        <router-outlet></router-outlet>
+      </div>
     
     </main>
   </div>
