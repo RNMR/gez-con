@@ -7,11 +7,11 @@
           </span>
           <span igxDrawerItem [isHeader]="true" class="font-weight-bold"> Bienvenido </span>
 
-          <hr>
+          <hr class="my-2">
           <span igxDrawerItem igxRipple [active]="true"> Home </span>
 
           <ng-container *ngFor="let it of menuItems">
-            <hr [hidden]="it.nivel!==1">
+            <hr class="my-2" [hidden]="it.nivel!==1">
             <span 
               igxDrawerItem 
               [attr.igxRipple]="it.nivel !== 1"
