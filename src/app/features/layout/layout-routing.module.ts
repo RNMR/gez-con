@@ -15,6 +15,10 @@ const routes: Routes = [
         path: 'home',
         loadChildren: () => import('../home/home.module').then(m => m.HomeModule)
       },
+      {
+        path: 'perfiles',
+        loadChildren: () => import('../perfiles/perfiles.module').then(m => m.PerfilesModule)
+      },
     ]
   },
   {

@@ -46,11 +46,12 @@ export class MainComponent implements OnInit {
     const user = this.crypt.decrypt( username )
     this.menuServ.getMenus(user).subscribe((res: any[])=>{
       this.menuItems = res;
-      console.log(res);
       if( res.length > 0 ) {
+        console.log(res);
         const empresa = this.crypt.encrypt(res[0].empresa)
         localStorage.setItem('empresa', empresa)
-        this.getUserProfiles(res[0].empresa);
+        this.menuServ.setMenuData(res);
+        // this.getUserProfiles(res[0].empresa);
       }
     })
   }

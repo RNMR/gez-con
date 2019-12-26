@@ -3,11 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MenuService {
   
-  private _menuData :BehaviorSubject<any>;
-  // private menuObs :Observable<any>
+  _menuData :BehaviorSubject<any>;
+  menuObs :Observable<any>
 
   public get menuData() {
     return this._menuData.value;
@@ -16,8 +18,8 @@ export class MenuService {
   constructor(
     private http: HttpClient,
   ){
-    this._menuData = new BehaviorSubject<any[]>([])
-    // this.menuObs = this.menuData.asObservable()
+    this._menuData = new BehaviorSubject<any>([])
+    this.menuObs = this._menuData.asObservable()
   }
   
   getMenus(user: string){
@@ -29,6 +31,7 @@ export class MenuService {
   }
 
   setMenuData(data){
+    console.log("what, why", data)
     this._menuData.next(data)
   }
 }
