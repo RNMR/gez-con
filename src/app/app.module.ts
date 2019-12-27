@@ -5,8 +5,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './features/shared/shared.module';
-import { DrawerTriggerService } from './features/shared/services/drawer-trigger.service';
 import { HttpClientModule } from '@angular/common/http';
+
+//Servicios q falle
+import { DrawerTriggerService } from './features/shared/services/drawer-trigger.service';
+import { MenuService } from './features/shared/services/menu.service';
 // import { IgxNavigationDrawerModule } from 'igniteui-angular';
 
 
@@ -22,7 +25,10 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     SharedModule,
   ],
-  providers: [DrawerTriggerService],
+  providers: [
+    DrawerTriggerService,
+    MenuService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -8,7 +8,13 @@
           <span igxDrawerItem [isHeader]="true" class="font-weight-bold"> Bienvenido </span>
 
           <hr class="my-2">
-          <span igxDrawerItem igxRipple [active]="true"> Home </span>
+          <span
+            igxDrawerItem
+            igxRipple
+            [routerLink]="[ '/home' ]"
+            routerLinkActive="igx-nav-drawer__item--active"
+            (click)="navigation.toggle()"
+          > Home </span>
 
           <ng-container *ngFor="let it of menuItems">
             <hr class="my-2" [hidden]="it.nivel!==1">
@@ -16,7 +22,7 @@
               igxDrawerItem 
               [attr.igxRipple]="it.nivel !== 1"
               [isHeader]="it.nivel === 1"
-              (click)="getToRoute(it)"
+              (click)="getToRoute(it); navigation.toggle()"
               [ngStyle]="{'margin-left.px': (it.nivel-1)*15 }"
             >
               {{ it.descripcion }}
@@ -25,16 +31,20 @@
           <hr class="my-2">
           <span 
             igxDrawerItem 
-            [isHeader]="true"
-            style="margin-left:15;"
+            igxRipple
+            [routerLink]="[ '/perfiles' ]"
+            routerLinkActive="igx-nav-drawer__item--active"
+            (click)="navigation.toggle()"
           >
             Perfiles
           </span>
           <hr class="my-2">
           <span 
             igxDrawerItem 
-            [isHeader]="true"
-            style="margin-left:15;"
+            igxRipple
+            [routerLink]="[ '/usuarios' ]"
+            routerLinkActive="igx-nav-drawer__item--active"
+            (click)="navigation.toggle()"
           >
             Usuarios
           </span>

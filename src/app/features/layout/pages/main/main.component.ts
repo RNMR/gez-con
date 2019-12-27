@@ -47,18 +47,10 @@ export class MainComponent implements OnInit {
     this.menuServ.getMenus(user).subscribe((res: any[])=>{
       this.menuItems = res;
       if( res.length > 0 ) {
-        console.log(res);
         const empresa = this.crypt.encrypt(res[0].empresa)
         localStorage.setItem('empresa', empresa)
         this.menuServ.setMenuData(res);
-        // this.getUserProfiles(res[0].empresa);
       }
-    })
-  }
-
-  getUserProfiles(empresa){
-    this.menuServ.getProfiles(empresa).subscribe(( profData )=>{
-      console.log("aca los perfiles..." , profData)
     })
   }
 

@@ -18,7 +18,7 @@ export class MenuService {
   constructor(
     private http: HttpClient,
   ){
-    this._menuData = new BehaviorSubject<any>([])
+    this._menuData = new BehaviorSubject<any>( [] )
     this.menuObs = this._menuData.asObservable()
   }
   
@@ -31,7 +31,10 @@ export class MenuService {
   }
 
   setMenuData(data){
-    console.log("what, why", data)
     this._menuData.next(data)
+  }
+
+  getMenuData(){
+    return this._menuData.pipe()
   }
 }

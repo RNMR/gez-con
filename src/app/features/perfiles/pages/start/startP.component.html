@@ -1,3 +1,24 @@
 <div class="main-perfiles">
-  BOI
+
+  <h5>Perfiles del Usuario</h5>
+  <hr>
+
+  <div class="row">
+    <div class="col-md-8 py-2" *ngFor="let prof of profiles">
+
+      <igx-card type="outlined" class="weather-card">
+        <igx-card-header>
+          <h3 igxCardHeaderTitle>{{ prof.descripcion }}</h3>
+          <h5 igxCardHeaderSubtitle>{{ prof.descripcionempresa }}</h5>
+        </igx-card-header>
+        
+        <igx-divider></igx-divider>
+
+        <igx-card-actions>
+          <button  igxButton igxRipple>GOLLY!</button>
+        </igx-card-actions>
+      </igx-card>
+    </div>
+  </div>
 </div>
+
