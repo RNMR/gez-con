@@ -1,0 +1,9 @@
+.weather-card{
+  cursor: pointer;
+  transition: all 225ms ease-out;
+
+  &:hover{
+    transform: translateY(-3px);
+    box-shadow: 0px 3px 3px 0px #7a7a7a;
+  }
+}
