@@ -1,9 +1,15 @@
-.weather-card{
-  cursor: pointer;
+.profile--card{
+  // cursor: pointer;
+  border-color: #0000ff77;
   transition: all 225ms ease-out;
 
   &:hover{
     transform: translateY(-3px);
     box-shadow: 0px 3px 3px 0px #7a7a7a;
+  
+    .profile--card__header{
+      background: #dadaff;
+      // background: #dadada;
+    }
   }
 }

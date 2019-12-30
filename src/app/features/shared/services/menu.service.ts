@@ -30,6 +30,14 @@ export class MenuService {
     return this.http.get(`${environment.url_basic}api/perfilempresa/${empresa}`)
   }
 
+  getSingleProfile( id ){
+    return this.http.get(`${environment.url_basic}api/perfil/${id}`)
+  }
+
+  deleteProfile( id ){
+    return this.http.delete(`${environment.url_basic}api/perfil/${id}`)
+  }
+
   setMenuData(data){
     this._menuData.next(data)
   }

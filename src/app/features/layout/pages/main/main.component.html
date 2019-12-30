@@ -2,10 +2,12 @@
     <igx-nav-drawer id="navigation" #drawer [isOpen]="true">
       <ng-template igxDrawer>
         <nav>
-          <span igxButton="icon" igxToggleAction="navigation" style="float:right; margin: 6px 6px 0 0;">
-            <igx-icon fontSet="material" color="blue">menu</igx-icon>
-          </span>
-          <span igxDrawerItem [isHeader]="true" class="font-weight-bold"> Bienvenido </span>
+          <div class="d-flex justify-content-between">
+            <span igxButton="icon" igxToggleAction="navigation" style="float:left; margin: 10px 10px 0;">
+              <igx-icon fontSet="material" color="blue">menu</igx-icon>
+            </span>
+            <span igxDrawerItem [isHeader]="true" class="font-weight-bold"> Bienvenido </span>
+          </div>
 
           <hr class="my-2">
           <span

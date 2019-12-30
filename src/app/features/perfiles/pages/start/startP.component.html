@@ -1,31 +1,62 @@
 <div class="main-perfiles">
 
-  <h5>Perfiles del Usuario</h5>
+  <div class="row">
+    <div class="col-md-8">
+      <h5 class="mt-3">Perfiles del Usuario</h5>
+    </div>
+    <div class="col-md-4 d-flex justify-content-end">
+      <button
+        igxButton="outlined"
+        class="w-100 mt-2"
+        (click)="dialog.open()"
+      >
+        Nuevo
+        <igx-icon fontSet="material"> add </igx-icon>
+      </button>
+    </div>
+  </div>
   <hr>
 
   <div class="row">
     <div class="col-md-4 py-2" *ngFor="let prof of profiles">
-      <igx-card type="outlined" class="weather-card">
-        <igx-card-header>
-          <span igxCardHeaderTitle>{{ prof.descripcion }}</span>
-          <span igxCardHeaderSubtitle>{{ prof.descripcionempresa }}</span>
-        </igx-card-header>
-
-        <!-- <igx-card-content> -->
+      <igx-card type="outlined" class="profile--card">
+        <div
+          class="profile--card__header"
+          
+        >
+          <igx-card-header>
+            <span igxCardHeaderTitle>{{ prof.descripcion }}</span>
+            <span igxCardHeaderSubtitle>{{ prof.descripcionempresa }}</span>
+          </igx-card-header>
+  
           <p class="text-right px-3 mb-2">{{prof.modUsuario}} | <strong>{{ prof.modFecha }}</strong></p>
-        <!-- </igx-card-content> -->
+        </div>
+
+        <!-- <div #tooltipRefCard="tooltip" igxTooltip>
+          Ver detalles en otra página
+        </div> -->
         
         <igx-divider></igx-divider>
 
         <igx-card-actions>
-          <button  igxButton igxRipple>GOLLY!</button>
+          <button  igxButton igxRipple (click)="currentProfile=prof; manageProfile(prof); manageModal.open()">VER DETALLES</button>
 
           <button
-            igxButton="icon"
             igxRipple
+            igxButton="icon"
             igxRippleCentered="true"
+            igxButtonColor="#4e4e4e"
           >
             <igx-icon> edit </igx-icon>
+          </button>
+          <button
+            igxRipple
+            igxButton="icon"
+            igxRippleCentered="true"
+            igxButtonColor="#4e4e4e"
+            (click)="deleteDialog.open(); currentProfile=prof; deleteProfile(currentProfile)"
+          >
+            <igx-icon> delete </igx-icon>
           </button>
         </igx-card-actions>
       </igx-card>
@@ -33,3 +64,86 @@
   </div>
 </div>
 
+<!-- ------------------------------ All are now Dialogues ------------------------------ -->
+<!-- Create new Perfil dialogue -->
+<igx-dialog
+  #dialog
+  [closeOnOutsideSelect]="true"
+  [positionSettings]="positionSettings"
+>
+  <igx-dialog-title class="d-flex pb-0">
+    <div class="d-flex">
+      <igx-icon>account_box</igx-icon>
+      <div class="dialog-title">Crear nuevo Perfil</div>
+    </div>
+  </igx-dialog-title>
+  
+  <div class="igx-dialog__window-content" style="width: 700px;">
+    <form [formGroup]="newProfileForm">
+      <igx-input-group>
+        <igx-prefix>
+          <igx-icon>person</igx-icon>
+        </igx-prefix>
+        <label igxLabel for="name">Nombre de Perfil</label>
+        <input igxInput name="name" type="text" />
+      </igx-input-group>
+      <igx-input-group>
+        <igx-prefix>
+          <igx-icon>lock</igx-icon>
+        </igx-prefix>
+        <label igxLabel for="empresa">Empresa</label>
+        <input igxInput name="empresa" type="text" />
+      </igx-input-group>
+    </form>
+  </div>
+
+  <div igxDialogActions class="dialog-container dialog-actions">
+    <button igxButton (click)="createProfile(dialog)">CREATE</button>
+    <button igxButton (click)="dialog.close()">CANCEL</button>
+  </div>
+</igx-dialog>
+
+<!-- Ver detalles -->
+<igx-dialog
+  #manageModal
+  [closeOnOutsideSelect]="true"
+>
+  <igx-dialog-title>
+    <div class="d-flex px-3">
+      <div class="dialog-title">Gestionando Perfil:</div>
+    </div>
+  </igx-dialog-title>
+  
+  <div class="igx-dialog__window-content">
+    <div class="text-uppercase">
+      {{ currentProfile.descripcionempresa }} - <span class="font-weight-bold"> {{ currentProfile.descripcion }}</span>
+    </div>
+    <hr>
+    <pre class="d-flex">
+      {{currentProfile | json}}
+    </pre>
+  </div>
+
+</igx-dialog>
+
+<!-- Delete Perfil -->
+<igx-dialog
+  #deleteDialog
+  [closeOnOutsideSelect]="true"
+  [positionSettings]="positionSettings"
+>
+  <igx-dialog-title>
+    <div class="d-flex px-3">
+      <div class="dialog-title">Borrar {{ currentProfile.descripcion }}</div>
+    </div>
+  </igx-dialog-title>
+
+  <div class="igx-dialog__window-content">
+    ¿Estas seguro que deseas borrar este perfil?
+  </div>
+
+  <div igxDialogActions class="dialog-container dialog-actions">
+    <button igxButton (click)="deleteProfile(currentProfile, deleteDialog)">SI, BÓRRALO</button>
+    <button igxButton (click)="deleteDialog.close()">NO</button>
+  </div>
+</igx-dialog>

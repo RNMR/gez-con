@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { 
-	IgxButtonModule, IgxIconModule, IgxNavigationDrawerModule, IgxRippleModule, IgxToggleModule, IgxInputGroupModule, IgxCardModule, IgxDividerModule, IgxExpansionPanelModule, IgxListModule, IgxSliderModule, IgxChipsModule
+	IgxButtonModule, IgxIconModule, IgxNavigationDrawerModule, IgxRippleModule, IgxToggleModule, IgxInputGroupModule, IgxCardModule, IgxDividerModule, IgxExpansionPanelModule, IgxListModule, IgxSliderModule, IgxChipsModule, IgxDialogModule, IgxTooltipModule
  } from "igniteui-angular";
 import { SHARED_SERVICES } from './services';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -26,7 +26,9 @@ const MODULES = [
 	IgxChipsModule,
 	IgxSliderModule,
 	IgxListModule,
-	IgxExpansionPanelModule,
+  IgxExpansionPanelModule,
+  IgxDialogModule,
+  IgxTooltipModule,
 
 ]
 
