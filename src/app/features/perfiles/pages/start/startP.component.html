@@ -29,6 +29,7 @@
             <span igxCardHeaderSubtitle>{{ prof.descripcionempresa }}</span>
           </igx-card-header>
   
+          <span style="float: left; padding-left: 15px;" [ngStyle]="{'color': prof.estado == '1'? blue:red}"><b> {{prof.estado === "1"? 'ACTIVO':'INACIVO'}} </b></span>
           <p class="text-right px-3 mb-2">{{prof.modUsuario}} | <strong>{{ prof.modFecha }}</strong></p>
         </div>
 
@@ -39,7 +40,14 @@
         <igx-divider></igx-divider>
 
         <igx-card-actions>
-          <button  igxButton igxRipple (click)="currentProfile=prof; manageProfile(prof); manageModal.open()">VER DETALLES</button>
+          <!-- (click)="currentProfile=prof; manageProfile(prof); manageModal.open()" -->
+          <button
+            igxButton
+            igxRipple
+            [routerLink]="[ '/perfiles/detalle']"
+            [queryParams]="{perfil: prof.perfil}"
+          >VER DETALLES</button
+          >
 
           <button
             igxRipple
@@ -63,6 +71,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- ------------------------------ All are now Dialogues ------------------------------ -->
 <!-- Create new Perfil dialogue -->

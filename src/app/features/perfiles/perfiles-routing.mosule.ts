@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StartPComponentComponent } from './pages';
+import { StartPComponentComponent, ProfileDetalleComponent } from './pages';
 
 const routes: Routes = [
+  { path: 'detalle', component: ProfileDetalleComponent },
   { path: '', component: StartPComponentComponent },
 ];
 

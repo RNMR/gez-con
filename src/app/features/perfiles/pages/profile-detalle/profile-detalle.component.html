@@ -1,0 +1,36 @@
+<igx-tabs>
+  <igx-tabs-group label="Principal">
+
+    <div class="p-2 permits-table">
+      <div *ngFor="let item of allPermits; let i = index">
+        <div igxRipple class="table-item-{{item.nivel}} bg-secondary text-white p-1 border-bottom {{ item.estado === '0'? 'text-muted border-warning':'' }}" [hidden]='item.nivel !== 1'>
+          <h6> {{ item.descripcion }} </h6>
+          <div class="table-checker">
+            <!-- <input type="checkbox"> -->
+          </div>
+        </div>
+        <div igxRipple class="table-item-{{item.nivel}} ml-2 p-1 border-bottom {{ item.estado === '0'? 'text-muted border-warning':'' }}" [ngClass]="{ 'border-primary': (allPermits[i+1] || {}).nivel === 3 }" [hidden]='item.nivel !== 2'>
+          <b>{{ item.descripcion }}</b>
+          <div class="table-checker">
+            <!-- <input type="checkbox"> -->
+          </div>
+        </div>
+        <div igxRipple class="table-item-{{item.nivel}} ml-4 p-1 border-bottom {{ item.estado === '0'? 'text-muted border-warning':'' }}" [hidden]='item.nivel !== 3'>
+          <span>{{ item.descripcion }}</span>
+          <div class="table-checker">
+            <!-- <input type="checkbox"> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </igx-tabs-group>
+  <igx-tabs-group label="Tab 2">
+    
+  </igx-tabs-group>
+  <igx-tabs-group label="Tab 3">
+    
+  </igx-tabs-group>
+</igx-tabs>
+
+

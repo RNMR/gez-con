@@ -55,7 +55,6 @@ export class StartPComponentComponent implements OnInit {
 
   createProfile( diag: any ){
 
-  // Hay q poner el codigo para crear profile
     diag.close()
   }
 

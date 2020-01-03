@@ -1,0 +1,10 @@
+.permits{
+  &-table{
+    .table-item{
+      &-1, &-2, &-3{
+        display: flex;
+        
+      }
+    }
+  }
+}

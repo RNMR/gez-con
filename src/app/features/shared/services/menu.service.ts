@@ -38,6 +38,10 @@ export class MenuService {
     return this.http.delete(`${environment.url_basic}api/perfil/${id}`)
   }
 
+  getProfileData( id, user = 'GEZCON' ){
+    return this.http.get(`${environment.url_basic}api/menulicenciaperfil/${id}/${user}`)
+  }
+
   setMenuData(data){
     this._menuData.next(data)
   }
