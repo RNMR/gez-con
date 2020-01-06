@@ -50,6 +50,7 @@ export class StartPComponentComponent implements OnInit {
   manageProfile( prof ){
     this.menuServ.getSingleProfile( prof.perfil ).subscribe ((data)=>{
       console.log("samey data)", data, prof)
+      //Esta data del console es la misma, la funcion es irrelevante
     })
   }
 

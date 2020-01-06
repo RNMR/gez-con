@@ -26,7 +26,8 @@
         >
           <igx-card-header>
             <span igxCardHeaderTitle>{{ prof.descripcion }}</span>
-            <span igxCardHeaderSubtitle>{{ prof.descripcionempresa }}</span>
+            <span igxCardHeaderSubtitle> {{ prof.descripcionempresa }} </span>
+            <span> {{ prof.perfil }} </span>
           </igx-card-header>
   
           <span style="float: left; padding-left: 15px;" [ngStyle]="{'color': prof.estado == '1'? blue:red}"><b> {{prof.estado === "1"? 'ACTIVO':'INACIVO'}} </b></span>
@@ -46,8 +47,7 @@
             igxRipple
             [routerLink]="[ '/perfiles/detalle']"
             [queryParams]="{perfil: prof.perfil}"
-          >VER DETALLES</button
-          >
+          >VER DETALLES</button>
 
           <button
             igxRipple
