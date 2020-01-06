@@ -61,6 +61,7 @@ export class StartPComponentComponent implements OnInit {
 
   deleteProfile(currentProfile, deleteDialog){
     this.menuServ.deleteProfile(currentProfile.perfil).subscribe(()=>{
+      deleteDialog.close();
       this.getUserProfiles( this.menues[0].empresa )
     })
   }
