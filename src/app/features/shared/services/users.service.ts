@@ -11,9 +11,7 @@ export class UsersService {
     private crypt :EncryptDecryptService,
   ){}
 
-  getUsersList(){
-    let username = localStorage.getItem('userName');
-    const user = this.crypt.decrypt( username );
-    return this.http.get(`${environment.url_basic}api/usuariolicencia/${user}`)
+  getUsersList(empresa){
+    return this.http.get(`${environment.url_basic}api/usuariolicencia/${empresa}`)
   }
 }
