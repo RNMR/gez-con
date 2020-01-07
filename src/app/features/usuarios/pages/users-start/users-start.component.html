@@ -1,5 +1,33 @@
-users-start
 
-<pre>
-  {{arr | json}}
-</pre>
+<igx-tabs>
+  <igx-tabs-group label="Empresa - Perfil">
+
+    <div class="p-3">
+      <div class="row row-cols-5 text-center container-lg">
+        <div class="col" *ngFor="let it of userArr">
+          <div class="inner-card border-radius border border-primary rounded-circle d-flex flex-column p-1 py-3 justify-content-center bg-info text-white h-100" *ngIf="it.username !== null; else nonCard">
+            <h5 class="m-0 mb-1"> {{ it.username }} </h5>
+            <span> {{ it.nombre }}</span>
+            <p>
+              <b>Email:</b> {{it.email}}
+            </p>
+          </div>
+
+          <ng-template #nonCard></ng-template>
+          
+        </div>
+      </div>
+    </div>
+
+    <pre>
+      {{userArr | json}}
+    </pre>
+
+  </igx-tabs-group>
+  <igx-tabs-group label="Tab 2">
+    
+  </igx-tabs-group>
+  <igx-tabs-group label="Tab 3">
+    
+  </igx-tabs-group>
+</igx-tabs>

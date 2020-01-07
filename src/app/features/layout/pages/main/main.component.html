@@ -15,7 +15,6 @@
             igxRipple
             [routerLink]="[ '/home' ]"
             routerLinkActive="igx-nav-drawer__item--active"
-            (click)="navigation.toggle()"
           > Home </span>
 
           <ng-container *ngFor="let it of menuItems">
@@ -36,7 +35,6 @@
             igxRipple
             [routerLink]="[ '/perfiles' ]"
             routerLinkActive="igx-nav-drawer__item--active"
-            (click)="navigation.toggle()"
           >
             Perfiles
           </span>
@@ -46,7 +44,6 @@
             igxRipple
             [routerLink]="[ '/usuarios' ]"
             routerLinkActive="igx-nav-drawer__item--active"
-            (click)="navigation.toggle()"
           >
             Usuarios
           </span>
