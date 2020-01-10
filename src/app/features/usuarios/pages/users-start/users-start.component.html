@@ -4,17 +4,48 @@
 
     <div class="p-3">
       <div class="row row-cols-5 text-center container-lg">
+        <div class="card col d-flex flex-column align-self-center h-100 bg-secondary text-white text-center">
+          <igx-icon color="white" class="mx-auto">person</igx-icon>
+          <span> NUEVO USUARIO </span>
+        </div>
         <div class="col" *ngFor="let it of userArr">
-          <div class="inner-card border-radius border border-primary rounded-circle d-flex flex-column p-1 py-3 justify-content-center bg-info text-white h-100" *ngIf="it.username !== null; else nonCard">
+          <!-- <div class="inner-card border-radius border border-primary rounded-circle d-flex flex-column p-1 py-3 justify-content-center bg-info text-white h-100" *ngIf="it.username !== null; else nonCard">
             <h5 class="m-0 mb-1"> {{ it.username }} </h5>
             <span> {{ it.nombre }}</span>
             <p>
               <b>Email:</b> {{it.email}}
             </p>
-          </div>
+          </div> -->
+
+          
+          <igx-card class="card--user" [ngClass]="{'male': it.sexo === 'M', 'female':it.sexo === 'F'}" *ngIf="it.username !== null; else nonCard">
+            <igx-card-header style="height:90px">
+              <div class="row">
+                <div class="col-md-3">
+                  <igx-avatar [ngStyle]="{'color': it.sexo === 'M'? '#0000ff':'#ff0000'}" src="https://cdn2.iconfinder.com/data/icons/user-icon-2-1/100/user_5-15-512.png" roundShape="true"></igx-avatar>
+                </div>
+                <div class="col-md-9">
+                  <h4 igxCardHeaderTitle> {{ it.username }} </h4>
+                  <h5 igxCardHeaderSubtitle> {{ it.nombre }} </h5>
+                </div>
+              </div>
+            </igx-card-header>
+
+            <igx-card-media>
+                <img src="https://www.infragistics.com/angular-demos/assets/images/card/media/photographer_portfolio.jpg">
+            </igx-card-media>
+
+            <igx-card-content>
+              <p>Photographer Frank Carter won this year national photo contest with his image "Skies" which gathered the most votes in the competition.</p>
+            </igx-card-content>
+
+            <igx-card-actions>
+              <button igxButton>Like</button>
+              <button igxButton>Share</button>
+            </igx-card-actions>
+          </igx-card>
 
           <ng-template #nonCard></ng-template>
-          
         </div>
       </div>
     </div>
