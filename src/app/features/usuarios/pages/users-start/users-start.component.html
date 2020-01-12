@@ -4,11 +4,16 @@
 
     <div class="p-3">
       <div class="row row-cols-5 text-center container-lg">
-        <div class="card col d-flex flex-column align-self-center h-100 bg-secondary text-white text-center">
-          <igx-icon color="white" class="mx-auto">person</igx-icon>
-          <span> NUEVO USUARIO </span>
+        <div class="col my-2">
+          <div class="card w-100 h-100 bg-secondary text-white text-center p-3 btn" style="cursor: pointer;" (click)="newUserDialog.open(); refreshForm(); editBool=true;">
+            <div class="d-flex flex-column align-self-center border border-light rounded w-100 h-100 " style="justify-content: space-evenly;">
+              <igx-icon color="white" class="mx-auto mt-3" style="font-size: 100px; height: 100px; color: white; width: 100px;">add</igx-icon>
+              <span class="mb-3"> <igx-icon color="white" class="mx-auto" style="position:relative; top:5px">person</igx-icon> NUEVO USUARIO </span>
+            </div>
+          </div>
         </div>
-        <div class="col" *ngFor="let it of userArr">
+
+        <div class="col my-2" *ngFor="let it of userArr">
           <!-- <div class="inner-card border-radius border border-primary rounded-circle d-flex flex-column p-1 py-3 justify-content-center bg-info text-white h-100" *ngIf="it.username !== null; else nonCard">
             <h5 class="m-0 mb-1"> {{ it.username }} </h5>
             <span> {{ it.nombre }}</span>
@@ -20,39 +25,41 @@
           
           <igx-card class="card--user" [ngClass]="{'male': it.sexo === 'M', 'female':it.sexo === 'F'}" *ngIf="it.username !== null; else nonCard">
             <igx-card-header style="height:90px">
-              <div class="row">
-                <div class="col-md-3">
+              <div class="row w-100">
+                <div class="col-md-3 col-3">
                   <igx-avatar [ngStyle]="{'color': it.sexo === 'M'? '#0000ff':'#ff0000'}" src="https://cdn2.iconfinder.com/data/icons/user-icon-2-1/100/user_5-15-512.png" roundShape="true"></igx-avatar>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9 col-9">
                   <h4 igxCardHeaderTitle> {{ it.username }} </h4>
                   <h5 igxCardHeaderSubtitle> {{ it.nombre }} </h5>
                 </div>
               </div>
             </igx-card-header>
 
-            <igx-card-media>
+            <!-- <igx-card-media>
                 <img src="https://www.infragistics.com/angular-demos/assets/images/card/media/photographer_portfolio.jpg">
-            </igx-card-media>
+            </igx-card-media> -->
 
-            <igx-card-content>
-              <p>Photographer Frank Carter won this year national photo contest with his image "Skies" which gathered the most votes in the competition.</p>
+            <igx-card-content class="text-left">
+              <p> <b> Sexo: </b> {{ it.sexo === 'M'? 'Masculino': 'Femenino' }} </p>
+              <p> <b> Email: </b> {{ it.email === null? 'NO DISPONIBLE': it.email }} </p>
+              <p> <b> Estado: </b> {{ it.estado === null? 'NO DISPONIBLE': it.estado }} </p>
+              <p> <b> Licencia: </b> {{ it.codLicencia === null? 'NO DISPONIBLE': it.codLicencia }} </p>
+              <p> <b> F. Creación: </b> {{ it.creacionFecha === null? 'NO DISPONIBLE': it.creacionFecha }} </p>
+              <p> <b> F. Modificación: </b> {{ it.modFecha === null? 'NO DISPONIBLE': it.modFecha }} </p>
             </igx-card-content>
 
             <igx-card-actions>
-              <button igxButton>Like</button>
-              <button igxButton>Share</button>
+              <button igxButton (click)="edit(it); newUserDialog.open(); editBool=true; ">Editar</button>
+              <button igxButton (click)="goToMant(it)">MANT.</button>
             </igx-card-actions>
           </igx-card>
 
           <ng-template #nonCard></ng-template>
         </div>
+
       </div>
     </div>
-
-    <pre>
-      {{userArr | json}}
-    </pre>
 
   </igx-tabs-group>
   <igx-tabs-group label="Tab 2">
@@ -62,3 +69,75 @@
     
   </igx-tabs-group>
 </igx-tabs>
+
+
+<igx-dialog
+  #newUserDialog
+  [closeOnOutsideSelect]="true"
+  [positionSettings]="positionSettings"
+>
+
+  <h3 class="text-primary py-2 px-3"> {{ newUser.get('username').value === '' ?' NUEVO USUARIO':'EDITAR USUARIO' }} </h3>
+
+  <form [formGroup]="newUser" class="p-3 w-100" autocomplete="off" (ngSubmit)="onSubmit(newUser.value, newUserDialog, successToast, errorToast)">
+  
+    <igx-input-group>
+      <!-- <igx-prefix>+359</igx-prefix> -->
+      <label igxLabel for="phone">Usuario</label>
+      <input igxInput name="phone" type="text" formControlName="username" />
+      <igx-suffix>
+        <igx-icon color="gray" class="mx-auto" style="position:relative; top:2px">person</igx-icon>
+      </igx-suffix>
+    </igx-input-group>
+  
+    <!-- <igx-input-group type="border"> -->
+    <igx-input-group>
+      <!-- <igx-prefix>+359</igx-prefix> -->
+      <label igxLabel for="phone">Nombre de Usuario</label>
+      <input igxInput name="phone" type="text" formControlName="nombre" />
+      <!-- <igx-suffix>
+        <igx-icon color="gray" class="mx-auto" style="position:relative; top:2px">person</igx-icon>
+      </igx-suffix> -->
+    </igx-input-group>
+
+    <igx-input-group class="py-2">
+      <input igxInput name="pass" type="password" formControlName="password" required="required" />
+      <label igxLabel for="pass">Password</label>
+    </igx-input-group>
+
+    <igx-input-group class="py-2">
+      <input igxInput name="username" type="email" formControlName="email" required="required" />
+      <label igxLabel for="username">Email de Usuariio</label>
+    </igx-input-group>
+    
+    <igx-input-group>
+      <!-- <igx-prefix>+51</igx-prefix> -->
+      <label igxLabel for="phone">Telefono</label>
+      <input igxInput name="phone" type="number" formControlName="telefono" onkeydown="return event.keyCode !== 69"/>
+      <igx-suffix>
+        <igx-icon color="gray" class="mx-auto" style="position:relative; top:2px">phone</igx-icon>
+      </igx-suffix>
+    </igx-input-group>
+
+    <igx-checkbox formControlName="idUserDB" [checked]="true" [disabled] = "true">
+      Es usuario de DB
+    </igx-checkbox>
+
+    <igx-select formControlName="sexo" class="w-100">
+      <label igxLabel>Sexo</label>
+      <igx-select-item value="M">Masculino</igx-select-item>
+      <igx-select-item value="F">Femenino</igx-select-item>
+    </igx-select>
+
+    <igx-radio-group formControlName="estado">
+      <igx-radio class="radio-sample pr-1 my-2" value="1"> ACTIVO </igx-radio>
+      <igx-radio class="radio-sample pl-1 my-2" value="0"> INACTIVO </igx-radio>
+    </igx-radio-group>
+
+    <button class="mx-auto" type="submit" igxButton>{{ editBool? 'ENVIAR':'EDITAR' }}</button>
+  </form>
+
+</igx-dialog>
+
+<igx-toast #successToast message="Se realizó con éxito!" [position]="bottom"></igx-toast>
+<igx-toast #errorToast message="Ha ocurrido un error!, por favor intentalo más tarrde o contacta al administrador." [position]="bottom"></igx-toast>

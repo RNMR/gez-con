@@ -1,0 +1,105 @@
+<igx-tabs>
+  <igx-tabs-group label="Empresa - Perfil">
+    
+    <div class="d-flex justify-content-around mt-3">
+      <button igxButton="raised" class="bg-danger" (click)="deleteUser(successToast)">
+        Eliminar TODA esta data y registro 
+      </button>
+
+      <button igxButton class="ml-auto d-flex" (click)="dialogUserData.open(); refreshForm(); editBool=false">
+        NUEVO
+        <igx-icon class="ml-1" color="blue" fontSet="material"> add </igx-icon>
+      </button>
+    </div>
+
+    <table class="table my-3 text-center">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Fecha Creac.</th>
+          <th scope="col">Username</th>
+          <th scope="col">Perfil</th>
+          <th scope="col">Empresa</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of deatilsData; let i=index">
+          <th scope="row">{{ i+1 }}</th>
+          <td>{{ item.creacionFecha }}</td>
+          <td>{{ item.username }}</td>
+          <td>{{ item.descPerfil }}</td>
+          <td>{{ item.descEmpresa }}</td>
+          <td>{{ item.estado === '1'? 'ACTIVADO':'INACTIVO' }}</td>
+          <td class="d-flex p-2 justify-content-around">
+            <button igxButton="raised" displayDensity="cosy" (click)="editBool=true; dialogUserData.open(); edit(item)">
+              EDITAR
+            </button>
+            <button igxButton displayDensity="cosy" (click)="deleteUserRegister(item, successToast)">
+              <igx-icon color="blue" fontSet="material"> delete </igx-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </igx-tabs-group>
+  <igx-tabs-group label="Tab 2">
+    
+  </igx-tabs-group>
+  <igx-tabs-group label="Tab 3">
+    
+  </igx-tabs-group>
+</igx-tabs>
+
+<igx-dialog
+  #dialogUserData
+  [closeOnOutsideSelect]="true"
+  [positionSettings]="positionSettings"
+>
+
+  <h5 class="text-primary text-center py-2 px-3"> {{ editBool? 'EDITAR DATA':'INGRESAR DATA' }} </h5>
+
+  <form [formGroup]="formDataUser" (ngSubmit)="onSubmit(formDataUser.value, successToast)" class="p-3">
+    <igx-input-group>
+      <label igxLabel for="empresa">Empresa Cod</label>
+      <input igxInput name="empresa" type="number" formControlName="empresa" onkeydown="return event.keyCode !== 69"/>
+    </igx-input-group>
+    
+    <igx-input-group>
+      <label igxLabel for="name">Nombre de Empresa</label>
+      <input igxInput name="name" type="text" formControlName="descEmpresa"/>
+    </igx-input-group>
+
+    <igx-input-group>
+      <label igxLabel for="perfil">Perfil</label>
+      <input igxInput name="perfil" type="number" formControlName="perfil" onkeydown="return event.keyCode !== 69"/>
+    </igx-input-group>
+    
+    <igx-input-group>
+      <label igxLabel for="name">Descripcion de Perfil</label>
+      <input igxInput name="name" type="text" formControlName="descPerfil"/>
+    </igx-input-group>
+    
+    <igx-radio-group formControlName="estado">
+      <label for="estado" class="w-100 m-0">Estado:</label>
+      <igx-radio class="radio-sample pr-1 my-2" value="1"> ACTIVO </igx-radio>
+      <igx-radio class="radio-sample pl-1 my-2" value="0"> INACTIVO </igx-radio>
+    </igx-radio-group>
+    
+    <igx-radio-group formControlName="indDefecto">
+      <label for="indDefecto" class="w-100 m-0">indDefecto:</label>
+      <igx-radio class="radio-sample pr-1 my-2" value="1"> ACTIVO </igx-radio>
+      <igx-radio class="radio-sample pl-1 my-2" value="0"> INACTIVO </igx-radio>
+    </igx-radio-group>
+
+    <div class="w-100 d-flex">
+      <button class="mx-auto" type="submit" igxButton>{{ !editBool? 'AÑADIR':'EDITAR' }}</button>
+    </div>
+
+  </form>
+</igx-dialog>
+
+<igx-toast #successToast message="Se realizó con éxito!" [position]="bottom"></igx-toast>
+<igx-toast #errorToast message="Ha ocurrido un error!, por favor intentalo más tarrde o contacta al administrador." [position]="bottom"></igx-toast>
