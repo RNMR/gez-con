@@ -41,10 +41,10 @@ export class UserDetailComponent implements OnInit {
       username: [this.currentParam],
       estado: [ '' ],
       indDefecto: [ '' ],
-      creacionUsuario: ["dbagezcon"],
-      creacionFecha: [],
-      modUsuario: [null],
-      modFecha: [null],
+      creacionUsuario: [this.userName],
+      creacionFecha: [''],
+      modUsuario: [this.userName],
+      modFecha: [''],
     })
     this.startingForm = clone( this.formDataUser.value )
   }
@@ -92,15 +92,16 @@ export class UserDetailComponent implements OnInit {
 
   onSubmiit( formValue, successToast ){
     const dateObj = new Date();
-    const month = dateObj.getUTCMonth() + 1; //months from 1-12
-    const day = dateObj.getUTCDate();
+    const month = (dateObj.getUTCMonth() + 1).toString().length === 1 ? "0" + (dateObj.getUTCMonth() + 1) : (dateObj.getUTCMonth() + 1); 
+    const day = dateObj.getUTCDate().toString().length === 1 ? "0" + dateObj.getUTCDate():dateObj.getUTCDate();
     const year = dateObj.getUTCFullYear();
 
     const today = year + "-" + month + "-" + day;
 
-    formValue.creacionFecha = today
+    formValue.modFecha = today
 
     if( !this.editBool ){
+      formValue.creacionFecha = today
       this.newUserData(formValue, successToast)
     } else {
       this.editUserData(formValue, successToast)

@@ -42,8 +42,8 @@ export class UsersStartComponent implements OnInit {
       codLicencia: ['GEZCON'],
       estado: ['1'],
       creacionUsuario: [ user ],
-      creacionFecha: [],
-      modUsuario: [''],
+      creacionFecha: [''],
+      modUsuario: [user],
       modFecha: [''],
     })
     this.startingForm = clone( this.newUser.value )
@@ -68,17 +68,18 @@ export class UsersStartComponent implements OnInit {
 
   onSubmit(formValue, dialog, successToast, errorToast){
     const dateObj = new Date();
-    const month = dateObj.getUTCMonth() + 1; //months from 1-12
-    const day = dateObj.getUTCDate();
+    const month = (dateObj.getUTCMonth() + 1).toString().length === 1 ? "0" + (dateObj.getUTCMonth() + 1) : (dateObj.getUTCMonth() + 1); 
+    const day = dateObj.getUTCDate().toString().length === 1 ? "0" + dateObj.getUTCDate():dateObj.getUTCDate();
     const year = dateObj.getUTCFullYear();
 
     const today = year + "-" + month + "-" + day;
 
-    formValue.creacionFecha = today
+    formValue.modFecha = today
     formValue.telefono = formValue.telefono.toString()
     console.log("form:", formValue);
-    if( !this.editBool ){
+    if( this.editBool ){
       // try{
+        formValue.creacionFecha = today
         this.userServ.newUser(formValue).subscribe((res)=>{
           console.log("new", res)
           dialog.close();

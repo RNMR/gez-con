@@ -77,7 +77,7 @@
   [positionSettings]="positionSettings"
 >
 
-  <h3 class="text-primary py-2 px-3"> {{ newUser.get('username').value === '' ?' NUEVO USUARIO':'EDITAR USUARIO' }} </h3>
+  <h3 class="text-primary py-2 px-3"> {{ editBool === true ?' NUEVO USUARIO':'EDITAR USUARIO' }} </h3>
 
   <form [formGroup]="newUser" class="p-3 w-100" autocomplete="off" (ngSubmit)="onSubmit(newUser.value, newUserDialog, successToast, errorToast)">
   
