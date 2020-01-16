@@ -45,10 +45,10 @@ export class LoginFormComponent implements OnInit {
   logUser(){
     const user = this.loginForm.get('user').value;
     const pass = this.loginForm.get('pass').value;
+    // console.log("ogin in", user, pass)
     this.authSrv.login(user, pass).pipe(first()).subscribe((data)=>{
-      this.router.navigate([this.returnUrl || 'home']);
-    }, (err)=>{
-      console.log("error", err)
+      console.log("")
+      this.router.navigate([ 'home' ]);
     })
   }
 }

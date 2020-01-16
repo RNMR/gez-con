@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/features/shared/services/users.service';
 
 import { clone } from 'ramda';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EncryptDecryptService } from 'src/app/features/shared/services/EcryptDecryptService';
 import { Router } from '@angular/router';
 
@@ -75,7 +75,7 @@ export class UsersStartComponent implements OnInit {
     const today = year + "-" + month + "-" + day;
 
     formValue.modFecha = today
-    formValue.telefono = formValue.telefono.toString()
+    formValue.telefono = (formValue.telefono || '').toString()
     console.log("form:", formValue);
     if( this.editBool ){
       // try{
@@ -85,6 +85,10 @@ export class UsersStartComponent implements OnInit {
           dialog.close();
           successToast.show()
           this.getAllUsers()
+        }, (err)=>{
+          if(err.status === 200){
+            dialog.close();   successToast.show();    this.getAllUsers();
+          }
         })
       // } catch {
       //   errorToast.show()
@@ -95,6 +99,10 @@ export class UsersStartComponent implements OnInit {
         dialog.close();
         successToast.show()
         this.getAllUsers()
+      }, (err)=>{
+        if(err.status === 200){
+          dialog.close();   successToast.show();   this.getAllUsers();
+        }
       })
     }
   }
