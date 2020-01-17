@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderInterceptor } from './interceptor/header.interceptor';
 import { TokenInterceptor } from './interceptor/token.interceptor';
+import { PasswordPipe } from './pipies/password.pipe';
 
 const MODULES = [
 
@@ -40,9 +41,13 @@ const MODULES = [
 ]
 
 @NgModule({
+  declarations: [
+    PasswordPipe,
+  ],
   imports: MODULES,
   exports: [
     ...MODULES,
+    PasswordPipe,
   ],
   providers: [
     ...SHARED_SERVICES,

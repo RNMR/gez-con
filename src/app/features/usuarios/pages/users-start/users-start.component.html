@@ -43,14 +43,16 @@
             <igx-card-content class="text-left">
               <p> <b> Sexo: </b> {{ it.sexo === 'M'? 'Masculino': 'Femenino' }} </p>
               <p> <b> Email: </b> {{ it.email === null? 'NO DISPONIBLE': it.email }} </p>
-              <p> <b> Estado: </b> {{ it.estado === null? 'NO DISPONIBLE': it.estado }} </p>
+              <p> <b> Telefono: </b> {{ it.telefono }} </p>
+              <p> <b> Password: </b> {{ (it.password || '') | password }} </p>
+              <p> <b> Estado: </b> {{ it.estado === 0? 'INACTIVO': 'ACTIVO' }} </p>
               <p> <b> Licencia: </b> {{ it.codLicencia === null? 'NO DISPONIBLE': it.codLicencia }} </p>
               <p> <b> F. Creación: </b> {{ it.creacionFecha === null? 'NO DISPONIBLE': it.creacionFecha }} </p>
               <p> <b> F. Modificación: </b> {{ it.modFecha === null? 'NO DISPONIBLE': it.modFecha }} </p>
             </igx-card-content>
 
             <igx-card-actions>
-              <button igxButton (click)="edit(it); newUserDialog.open(); editBool=true; ">Editar</button>
+              <button igxButton (click)="edit(it); newUserDialog.open(); editBool=false; ">Editar</button>
               <button igxButton (click)="goToMant(it)">MANT.</button>
             </igx-card-actions>
           </igx-card>
@@ -84,7 +86,7 @@
     <igx-input-group>
       <!-- <igx-prefix>+359</igx-prefix> -->
       <label igxLabel for="phone">Usuario</label>
-      <input igxInput name="phone" type="text" formControlName="username" />
+      <input igxInput name="phone" type="text" formControlName="username" [disabled]="!editBool"/>
       <igx-suffix>
         <igx-icon color="gray" class="mx-auto" style="position:relative; top:2px">person</igx-icon>
       </igx-suffix>

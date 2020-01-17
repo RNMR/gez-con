@@ -62,10 +62,14 @@ export class UserDetailComponent implements OnInit {
   }
   
   deleteUser(successToast){
-    console.log("2param", this.currentParam);
-    this.userServ.deleteUser(this.currentParam).subscribe((conf)=>{
+    console.log("2param", this.currentParam, this.currentParam.params.user);
+    this.userServ.deleteUser(this.currentParam.params.user).subscribe((conf)=>{
       successToast.show()
       this.router.navigate(['usuarios'])
+    }, (err)=>{
+      if(err.status === 200){
+        successToast.show();    this.router.navigate(['usuarios'])
+      }
     })
   }
 
@@ -90,7 +94,7 @@ export class UserDetailComponent implements OnInit {
     })
   }
 
-  onSubmiit( formValue, successToast ){
+  onSubmit( formValue, successToast ){
     const dateObj = new Date();
     const month = (dateObj.getUTCMonth() + 1).toString().length === 1 ? "0" + (dateObj.getUTCMonth() + 1) : (dateObj.getUTCMonth() + 1); 
     const day = dateObj.getUTCDate().toString().length === 1 ? "0" + dateObj.getUTCDate():dateObj.getUTCDate();
