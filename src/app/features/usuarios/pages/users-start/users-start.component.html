@@ -45,7 +45,7 @@
               <p> <b> Email: </b> {{ it.email === null? 'NO DISPONIBLE': it.email }} </p>
               <p> <b> Telefono: </b> {{ it.telefono }} </p>
               <p> <b> Password: </b> {{ (it.password || '') | password }} </p>
-              <p> <b> Estado: </b> {{ it.estado === 0? 'INACTIVO': 'ACTIVO' }} </p>
+              <p> <b> Estado: </b> {{ it.estado === '0'? 'INACTIVO': 'ACTIVO' }} </p>
               <p> <b> Licencia: </b> {{ it.codLicencia === null? 'NO DISPONIBLE': it.codLicencia }} </p>
               <p> <b> F. Creación: </b> {{ it.creacionFecha === null? 'NO DISPONIBLE': it.creacionFecha }} </p>
               <p> <b> F. Modificación: </b> {{ it.modFecha === null? 'NO DISPONIBLE': it.modFecha }} </p>
