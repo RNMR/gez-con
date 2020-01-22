@@ -8,7 +8,7 @@
       <button
         igxButton="outlined"
         class="w-100 mt-2"
-        (click)="dialog.open()"
+        (click)="dialog.open(); refreshForm(); isEdit = false; "
       >
         Nuevo
         <igx-icon fontSet="material"> add </igx-icon>
@@ -54,6 +54,7 @@
             igxButton="icon"
             igxRippleCentered="true"
             igxButtonColor="#4e4e4e"
+            (click)="dialog.open(); edit(prof); isEdit = true;"
           >
             <igx-icon> edit </igx-icon>
           </button>
@@ -83,7 +84,7 @@
   <igx-dialog-title class="d-flex pb-0">
     <div class="d-flex">
       <igx-icon>account_box</igx-icon>
-      <div class="dialog-title">Crear nuevo Perfil</div>
+      <div class="dialog-title">{{ isEdit? 'Editar Perfil':'Crear nuevo Perfil' }}</div>
     </div>
   </igx-dialog-title>
   
@@ -94,20 +95,32 @@
           <igx-icon>person</igx-icon>
         </igx-prefix>
         <label igxLabel for="name">Nombre de Perfil</label>
-        <input igxInput name="name" type="text" />
+        <input igxInput name="name" formControlName="descripcion" type="text" />
       </igx-input-group>
+
       <igx-input-group>
         <igx-prefix>
           <igx-icon>lock</igx-icon>
         </igx-prefix>
         <label igxLabel for="empresa">Empresa</label>
-        <input igxInput name="empresa" type="text" />
+        <input igxInput name="empresa" formControlName="descripcionempresa" type="text" />
       </igx-input-group>
+
+      <igx-input-group >
+        <label igxLabel for="perfil">Código</label>
+        <input igxInput formControlName="perfil" name="perfil" type="text"/>
+      </igx-input-group >
+
+      <igx-radio-group formControlName="estado">
+        <igx-radio class="radio-sample pr-1 my-2" value="1">ACTIIVO</igx-radio>
+        <igx-radio class="radio-sample pr-1 my-2" value="0">INACTIIVO</igx-radio>
+      </igx-radio-group>
     </form>
   </div>
 
   <div igxDialogActions class="dialog-container dialog-actions">
-    <button igxButton (click)="createProfile(dialog)">CREATE</button>
+    <button igxButton [hidden]="isEdit" (click)="createProfile(dialog)">CREAR</button>
+    <button igxButton [hidden]="!isEdit" (click)="editProfile(dialog)">EDITAR</button>
     <button igxButton (click)="dialog.close()">CANCEL</button>
   </div>
 </igx-dialog>

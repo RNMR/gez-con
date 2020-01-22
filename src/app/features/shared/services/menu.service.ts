@@ -34,6 +34,14 @@ export class MenuService {
     return this.http.get(`${environment.url_basic}api/perfil/${id}`)
   }
 
+  createProfile( body ){
+    return this.http.post(`${environment.url_basic}api/perfil`, body)
+  }
+
+  updateProfile( body ){
+    return this.http.put(`${environment.url_basic}api/perfil`, body)
+  }
+
   deleteProfile( id ){
     return this.http.delete(`${environment.url_basic}api/perfil/${id}`)
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { DrawerTriggerService } from 'src/app/features/shared/services/drawer-trigger.service';
 import { IgxNavigationDrawerComponent } from 'igniteui-angular';
 import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
@@ -12,6 +12,12 @@ import { EncryptDecryptService } from 'src/app/features/shared/services/EcryptDe
 })
 export class MainComponent implements OnInit {
   vavrvar
+  
+  @HostListener("window:beforeunload", ["$event"])
+  clearLocalStorage(event) {
+      // localStorage.clear();
+      // console.log('####Destroy local storage####');
+  }
 
   @ViewChild(IgxNavigationDrawerComponent, {static:true}) navigation : IgxNavigationDrawerComponent
   constructor(
