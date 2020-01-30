@@ -133,6 +133,11 @@ export class StartPComponentComponent implements OnInit {
     this.menuServ.deleteProfile(currentProfile.perfil).subscribe(()=>{
       deleteDialog.close();
       this.getUserProfiles( this.menues[0].empresa )
+    }, (e)=>{
+      if( e.status === 200 ){
+        deleteDialog.close();
+        this.getUserProfiles( this.menues[0].empresa )
+      }
     })
   }
   
