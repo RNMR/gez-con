@@ -72,10 +72,11 @@
       <input igxInput name="name" type="text" formControlName="descEmpresa"/>
     </igx-input-group>
 
-    <igx-input-group>
-      <label igxLabel for="perfil">Perfil</label>
-      <input igxInput name="perfil" type="number" formControlName="perfil" onkeydown="return event.keyCode !== 69"/>
-    </igx-input-group>
+    <label igxLabel for="perfil">Perfil</label>
+    <igx-select formControlName="perfil" class="">
+      <igx-select-item [value]="1">Administrador del sistema</igx-select-item>
+      <igx-select-item [value]="2">Contador</igx-select-item>
+    </igx-select>
     
     <igx-input-group>
       <label igxLabel for="name">Descripcion de Perfil</label>
