@@ -1,14 +1,18 @@
   <div class="content-wrap">
     <igx-nav-drawer id="navigation" #drawer [isOpen]="true">
-      <ng-template igxDrawer>
-        <nav>
+      <ng-template igxDrawer >
+        <nav class="drawer__title p-2">
           <div class="d-flex justify-content-between">
-            <span igxButton="icon" igxToggleAction="navigation" style="float:left; margin: 10px 10px 0;">
-              <igx-icon fontSet="material" color="blue">menu</igx-icon>
+            <span igxButton="icon" igxToggleAction="navigation" style="float:left;">
+              <igx-icon fontSet="material" color="white">menu</igx-icon>
             </span>
-            <span igxDrawerItem [isHeader]="true" class="font-weight-bold"> Bienvenido </span>
           </div>
+          <div class="d-flex flex-column-reverse">
 
+            <span igxDrawerItem [isHeader]="true" class="font-weight-bold text-white"> Bienvenido </span>
+          </div>
+        </nav>
+        <nav class="drawer__content">
           <hr class="my-2">
           <span
             igxDrawerItem
