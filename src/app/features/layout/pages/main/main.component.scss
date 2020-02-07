@@ -34,7 +34,7 @@
       &::-webkit-scrollbar-thumb{
         border-radius: 8px;
         background-color: #000090;
-        background-image: -webkit-linear-gradient(90deg, transparent, rgba(24, 236, 255, 0.5) 50%, transparent)
+        background-image: -webkit-linear-gradient(90deg, rgba(24, 236, 255, 0.5) 50%, transparent, rgba(24, 236, 255, 0.5) 50%)
       }
     }
   }
