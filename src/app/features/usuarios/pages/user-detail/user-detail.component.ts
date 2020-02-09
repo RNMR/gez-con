@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { clone } from 'ramda'
@@ -28,9 +28,9 @@ export class UserDetailComponent implements OnInit {
     private fb :FormBuilder,
     private router :Router,
   ) {
-    this.route.paramMap.subscribe((paramMap)=>{
+    this.route.paramMap.subscribe((paramMap :Params)=>{
       console.log("2param", paramMap);
-      this.currentParam = paramMap;
+      this.currentParam = paramMap.params.user;
     })
 
     this.formDataUser = this.fb.group({
@@ -55,7 +55,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   getAllUserDetailsData(){
-    this.userServ.detailUser(this.userName).subscribe((detUser)=>{
+    this.userServ.detailUser(this.currentParam).subscribe((detUser)=>{
       this.deatilsData = detUser;
       console.log("user detail", detUser)
     })
